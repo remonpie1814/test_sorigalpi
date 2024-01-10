@@ -4,8 +4,11 @@ import java.sql.Date;
 
 import javax.persistence.*;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.spring.sorigalpi.constant.Role;
 import com.spring.sorigalpi.constant.Status;
+import com.spring.sorigalpi.dto.MemberFormDto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +39,19 @@ public class Member {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	private Status status;
-   
 	
+	public static Member saveMember(MemberFormDto memberFormDto, PasswordEncoder pwdEncoder) {
+		Member member = new Member();
+		member.setEmail(memberFormDto.getEmail());
+		String pwd =pwdEncoder.encode(memberFormDto.getPwd());
+		member.setNickName(memberFormDto.getNickName());
+		member.setProfileImg(memberFormDto.getProfileImg());
+		member.setCreDate(memberFormDto.getCreDate());
+		member.setIntro(memberFormDto.getIntro());
+		member.setRole(Role.user);
+		member.setStatus(Status.active);
+		
+		return member;
+	}
 
 }
