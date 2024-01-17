@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.sorigalpi.dto.MemberUpdateDto;
 import com.spring.sorigalpi.dto.SignUpDto;
 import com.spring.sorigalpi.entity.Member;
 import com.spring.sorigalpi.service.MemberService;
@@ -56,6 +59,13 @@ public class MemberController {
 		return (List<Member>) memberService.findAll();
 	}
 	
+	@PutMapping("/member/update/{memberId}")
+		public String update(@PathVariable String memberId, @RequestBody MemberUpdateDto memberUpdateDto) {
+			return memberService.update(memberId, memberUpdateDto);
+		}
+	
 	}
+	
+	
 
 

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class SignUpDto { //회원 가입 화면으로부터 넘어오는 가입정보를 담을 Dto
 
 	private String memberId;
@@ -26,7 +26,7 @@ public class SignUpDto { //회원 가입 화면으로부터 넘어오는 가입�
 	private String role;
 	
 	@Builder
-	public void signUpDto(String memberId, String email, String pwd, String nickName, String profileImg,
+	public SignUpDto(String memberId, String email, String pwd, String nickName, String profileImg,
 			LocalDateTime creDate,  String intro,  String status,  String role) {
 		
 			this.memberId = memberId;
