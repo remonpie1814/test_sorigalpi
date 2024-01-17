@@ -52,7 +52,7 @@ public class MemberService {
         return "로그인 실패"; */
     
     @Transactional
-    public String save(SignUpDto signUpDto) { //사용자 추가 메소
+    public String save(SignUpDto signUpDto) { //사용자 추가 메소드
     	return memberRepository.save(signUpDto.toEntity()).getMemberId();
     }
     
@@ -70,6 +70,16 @@ public class MemberService {
     	return memberId;
     	//트랜잭션이 끝나면서 변경된 값을 테이블에 적용
     	//update기능에서 JPA영속성 때문에 DB에 쿼리를 없애는 부분이 없으며, Entity의 값만 변경하면 별도로 update쿼리가 필요없다.
+    }
+    
+    @Transactional
+    public String delete (String memberId) {
+    	Member member = memberRepository.findById(memberId).orElseThrow(() -> {
+    		return new IllegalArgumentException("해당 사용자가 존재하지 않습니다.");
+    	});
+    	
+    	memberRepository.deleteById(memberId);
+    	return "삭제 완료";
     }
     	} 
 
