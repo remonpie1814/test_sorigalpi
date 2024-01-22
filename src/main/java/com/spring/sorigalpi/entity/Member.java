@@ -1,44 +1,67 @@
 package com.spring.sorigalpi.entity;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import com.spring.sorigalpi.constant.Role;
-import com.spring.sorigalpi.constant.Status;
-import com.spring.sorigalpi.dto.MemberFormDto;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+@Table ( name = "t_member" )
 @Entity
-@Table(name = "t_member")
-@Getter
-@Setter
-@ToString
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Member {
 	
 	@Id
-	@Column(name = "memberId")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	/*@GeneratedValue(strategy = GenerationType.IDENTITY)*/
+	@Column( name = "memberId" )
+	private String memberId;
 	
-	private Long memberId;
-	private String name;
-	
-	@Column(unique = true)
+	@Column( name = "email" )
 	private String email;
+	@Column( name = "pwd" )
 	private String pwd;
+	@Column( name = "nickName" )
 	private String nickName;
+	
+	
+	@Column( name = "profileImg" )
 	private String profileImg;
-	private Date creDate;
+	@Column( name = "intro" )
 	private String intro;
 	
-	@Enumerated(EnumType.STRING)
+	@Column( name = "creDate" )
+	//@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime creDate;
+	
+	
+	@Column( name = "role" )
+	private String role;
+	@Column( name = "status" )
+	private String status;
+	
+	/* @Enumerated(EnumType.STRING)
 	private Role role;
-	private Status status;
+	private Status status; */
+		
 	
 	public static Member saveMember(MemberFormDto memberFormDto, PasswordEncoder pwdEncoder) {
 		Member member = new Member();
@@ -54,4 +77,11 @@ public class Member {
 		return member;
 	}
 
+public List<String> getRolesList(){
+    if(this.role.length() > 0){
+        return Arrays.asList(this.role.split(","));
+    }
+    return new ArrayList<>();
 }
+}
+

@@ -1,24 +1,26 @@
-spring: 
- datasource: 
-  driver-class-name: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/sorigalpi?serverTimezone=UTC&characterEncoding=UTF-8
-  username: root
-  password: 1234567890
-  
-jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    open-in-view: false
-    show-sql: true
-    hibernate:
-      format_sql: true
-      ddl-auto: create
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql:
-              BasicBinder: TRACE
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sorigalpi?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: update #create update none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+
+# 시크릿 키값
+jwt:
+  secret: "Vwgff4uvzQ4pes0Zt7sDNtL6pxGIkg2k95ZIrVhvlGmxcDRq9O1fnLN2lEzItsNE4w_lQ3f7xd09ukYxzIYS6InrYfg4ed2BSP0wmZ2RJEswzDsCLNqwRRXW780o1TYbuQpiXuUN0TnwXzb2l4YnNcXLHyBBJoIU17y1H56Aq1-ABW6MREvcFvlW-oUcMw92R0piQK4hO_Xo8AFIDnbeAqQUQ2Q91iQZRTtiNrV9Gv_pF_f1LF9OLDnvmTTy7Av7yFRstie90G9ABYsFTrxywHLzA-QMDYOeUOk8wq6TfxKbULK8PqWR__s1ebFlA3bFO1shhUdffA"
