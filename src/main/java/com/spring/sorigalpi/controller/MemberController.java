@@ -20,7 +20,7 @@ import com.spring.sorigalpi.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/sorigalpi")
+@RequestMapping(value = "/member")
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -55,16 +55,16 @@ public class MemberController {
 		return memberService.save(signUpDto);
 	}
 	
-	@GetMapping("/members")
+	@GetMapping("/list")
 	public List<Member> findAll(){
 		return (List<Member>) memberService.findAll();
 	}
 	
-	@PutMapping("/member/update/{memberId}")
+	@PutMapping("/update/{memberId}")
 		public String update(@PathVariable String memberId, @RequestBody MemberUpdateDto memberUpdateDto) {
 			return memberService.update(memberId, memberUpdateDto);
 		}
-	@DeleteMapping("/member/delete/{memberId}")
+	@DeleteMapping("/delete/{memberId}")
 	public void delete(@PathVariable String memberId) {
 		memberService.delete(memberId);
 	}
