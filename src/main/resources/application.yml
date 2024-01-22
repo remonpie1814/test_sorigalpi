@@ -10,9 +10,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://firstdb.c1msaa4gmez6.us-east-1.rds.amazonaws.com:3306/sorigalpi?serverTimezone=Asia/Seoul
-    username: admin
-    password: tjgud123
+    url: jdbc:mysql://localhost:3306/sorigalpi?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
 
   jpa:
     hibernate:

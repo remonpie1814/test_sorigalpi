@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.sorigalpi.dto.LoginDto;
 import com.spring.sorigalpi.dto.MemberUpdateDto;
 import com.spring.sorigalpi.dto.SignUpDto;
 import com.spring.sorigalpi.entity.Member;
@@ -80,6 +81,20 @@ public class MemberService {
     	
     	memberRepository.deleteById(memberId);
     	return "삭제 완료";
+    }
+    
+    public String login(LoginDto loginDto) {
+        String email = loginDto.getEmail();
+        String rawPassword = loginDto.getPwd();
+
+        Member byEmail = memberRepository.findByEmail(email);
+
+        // 비밀번호 일치 여부 확인
+        if(passwordEncoder.matches(rawPassword, byEmail.getPwd())){
+            return "로그인 성공";
+        }
+
+        return "로그인 실패";
     }
     	} 
 
