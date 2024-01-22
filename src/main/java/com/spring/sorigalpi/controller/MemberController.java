@@ -3,6 +3,7 @@ package com.spring.sorigalpi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,8 +64,11 @@ public class MemberController {
 		public String update(@PathVariable String memberId, @RequestBody MemberUpdateDto memberUpdateDto) {
 			return memberService.update(memberId, memberUpdateDto);
 		}
-	
+	@DeleteMapping("/member/delete/{memberId}")
+	public void delete(@PathVariable String memberId) {
+		memberService.delete(memberId);
 	}
+}
 	
 	
 
