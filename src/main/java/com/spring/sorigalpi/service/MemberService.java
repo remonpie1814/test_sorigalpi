@@ -1,14 +1,12 @@
 package com.spring.sorigalpi.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spring.sorigalpi.dto.LoginDto;
 import com.spring.sorigalpi.dto.SignUpDto;
 import com.spring.sorigalpi.entity.Member;
 import com.spring.sorigalpi.repository.MemberRepository;
@@ -53,8 +51,12 @@ public class MemberService {
         return "로그인 실패"; */
     
     @Transactional
-    public String save(SignUpDto signUpDto) {
+    public String save(SignUpDto signUpDto) { //사용자 추가 메소
     	return memberRepository.save(signUpDto.toEntity()).getMemberId();
     }
+    
+    public List<Member> findAll(){
+    	return memberRepository.findAll();
     }
+    	}
 
