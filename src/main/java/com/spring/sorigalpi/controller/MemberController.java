@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.sorigalpi.dto.LoginDto;
 import com.spring.sorigalpi.dto.MemberUpdateDto;
 import com.spring.sorigalpi.dto.SignUpDto;
 import com.spring.sorigalpi.entity.Member;
@@ -21,35 +20,51 @@ import com.spring.sorigalpi.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/sorigalpi")
+@RequestMapping(value = "/member")
 @RequiredArgsConstructor
 public class MemberController {
 
 	@Autowired
     private final MemberService memberService;
+    
+	/*
+    @PostMapping("/api/signUp")
+    public String signUp(@RequestBody SignUpDto signUpDto) {
+
+        return memberService.signUp(signUpDto);
+    }
+    
+    @PostMapping("/api/login")
+    public String login(@RequestBody LoginDto loginDto) {
+
+        return memberService.login(loginDto);
+    }
+    
+	@GetMapping("/test")
+	public String test() {
+		return "Hello World!";
+	} */
+	
+	/* @RequestMapping(value = "/signUp", method = RequestMethod.POST)
+	public void signUp() throws TestException {
+		
+	    System.out.println("왜 안 오는데?"); */
 		
 	@PostMapping("/signUp")
 	public String save(@RequestBody SignUpDto signUpDto) {
 		return memberService.save(signUpDto);
 	}
 	
-	 @PostMapping("/login")
-	    public String login(@RequestBody LoginDto loginDto) {
-
-	        return memberService.login(loginDto);
-	        
-	 }
-	
-	@GetMapping("/members")
+	@GetMapping("/list")
 	public List<Member> findAll(){
 		return (List<Member>) memberService.findAll();
 	}
 	
-	@PutMapping("/member/update/{memberId}")
+	@PutMapping("/update/{memberId}")
 		public String update(@PathVariable String memberId, @RequestBody MemberUpdateDto memberUpdateDto) {
 			return memberService.update(memberId, memberUpdateDto);
 		}
-	@DeleteMapping("/member/delete/{memberId}")
+	@DeleteMapping("/delete/{memberId}")
 	public void delete(@PathVariable String memberId) {
 		memberService.delete(memberId);
 	}
