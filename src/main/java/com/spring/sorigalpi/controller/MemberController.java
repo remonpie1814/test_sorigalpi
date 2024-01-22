@@ -64,7 +64,7 @@ public class MemberController {
 		public String update(@PathVariable String memberId, @RequestBody MemberUpdateDto memberUpdateDto) {
 			return memberService.update(memberId, memberUpdateDto);
 		}
-	@DeleteMapping("/delete/{memberId}")
+	@DeleteMapping("//delete/{memberId}")
 	public void delete(@PathVariable String memberId) {
 		memberService.delete(memberId);
 	}
