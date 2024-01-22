@@ -1,5 +1,6 @@
 package com.spring.sorigalpi.entity;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,10 +8,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -58,12 +63,12 @@ public class Member {
 
 
 
-    public List<String> getRolesList(){
+    /* public List<String> getRolesList(){
         if(this.role.length() > 0){
             return Arrays.asList(this.role.split(","));
     }
             return new ArrayList<>();
-}
+}*/
 
     public void update (String email, String pwd, String nickName, String profileImg,
             String intro, String status, String role) {
