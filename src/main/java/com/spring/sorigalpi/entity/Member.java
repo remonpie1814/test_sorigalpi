@@ -77,11 +77,26 @@ public class Member {
 		return member;
 	}
 
-public List<String> getRolesList(){
-    if(this.role.length() > 0){
-        return Arrays.asList(this.role.split(","));
+	public List<String> getRolesList(){
+		if(this.role.length() > 0){
+			return Arrays.asList(this.role.split(","));
     }
-    return new ArrayList<>();
+			return new ArrayList<>();
 }
+	
+	public void update (String email, String pwd, String nickName, String profileImg,
+			String intro, String status, String role) {
+		
+		this.email = email;
+		this.pwd = pwd;
+		this.nickName = nickName;
+		this.profileImg = profileImg;
+		this.intro = intro;
+		this.status = status;
+		this.role = role;
+	}
+
+
 }
+
 
