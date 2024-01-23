@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.sorigalpi.dto.BookDTO;
 import com.spring.sorigalpi.entity.Book;
 import com.spring.sorigalpi.repository.BookRepository;
 
@@ -17,4 +18,8 @@ public class BookService {
 		return bookRepository.findAll();
 	}
 	
+	public void createBook(BookDTO bookDTO) {
+		
+		bookRepository.save(null);
+	}
 }

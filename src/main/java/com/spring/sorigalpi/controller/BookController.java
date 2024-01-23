@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.sorigalpi.dto.BookDTO;
 import com.spring.sorigalpi.entity.Book;
 import com.spring.sorigalpi.service.BookService;
 
@@ -48,6 +51,13 @@ public class BookController {
 												.count(bookList.size()).build();
 	
 		return new ResponseEntity<>(basicResponse, HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/createBook")
+	public void createBook(@RequestBody BookDTO bookDTO){
+		
+	
 	}
 	
 	@Data

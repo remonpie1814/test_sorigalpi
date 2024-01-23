@@ -1,33 +1,23 @@
-package com.spring.sorigalpi.entity;
+package com.spring.sorigalpi.dto;
 
 import java.sql.Date;
 
-
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@ApiModel(value="책정보")
 @Data
-@Entity
-@Table(name = "t_book")
-@NoArgsConstructor(access = AccessLevel.PROTECTED) //기본 생성자 생성
-@AllArgsConstructor // 전체 필드에 대한 생성자
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
-@Builder
-public class Book {
-	@Id
+public class BookDTO {
+
 	@ApiModelProperty(value = "책고유Id", required = true)
 	private String bookId;
 	
@@ -57,7 +47,21 @@ public class Book {
 	
 	@ApiModelProperty(value = "동화책설명", example = "동화책내용 들어감", required = true)
 	private String info;
-	
+	/*
+	public Book toEntity() {
+		return Book.builder()
+				.bookId(bookId)
+				.memberId(memberId)
+				.bookName(bookName)
+				.pageNum(pageNum)
+				.status(null)
+				.creDate(creDate)
+				.blind(blind)
+				.recordable(recordable)
+				.info(info)
+				.bulid();
+	}
+	*/
 	private enum Status {
 		PUBLIC, PRIVATE, TEMP
 	}
