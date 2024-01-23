@@ -11,9 +11,9 @@ spring:
   
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/sorigalpi?serverTimezone=Asia/Seoul
     username: root
-    password: 0930
+    password: 1234
     
   # 스웨거 스프링부트 버전2.6이후 생기는 오류를 해결해주는 설정    
   mvc:
