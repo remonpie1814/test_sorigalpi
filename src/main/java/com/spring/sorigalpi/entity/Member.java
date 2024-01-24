@@ -52,16 +52,14 @@ public class Member {
     private LocalDateTime creDate;
 
 
+   
     @Column( name = "role" )
-    private String role;
-    @Column( name = "status" )
-    private String status;
-
-    /* @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Role role;
-    private Status status; */
-
-
+    
+    @Column( name = "status" )
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     /* public List<String> getRolesList(){
         if(this.role.length() > 0){
@@ -71,15 +69,15 @@ public class Member {
 }*/
 
     public void update (String email, String pwd, String nickName, String profileImg,
-            String intro, String status, String role) {
+            String intro, Role role, Status status) {
 
         this.email = email;
         this.pwd = pwd;
         this.nickName = nickName;
         this.profileImg = profileImg;
         this.intro = intro;
-        this.status = status;
         this.role = role;
+        this.status = status;
     }
 
 
