@@ -1,11 +1,15 @@
 package com.spring.sorigalpi.dto;
 
-import java.sql.Date;
+
 import java.time.LocalDateTime;
 
-import com.spring.sorigalpi.entity.Member;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
-import lombok.AllArgsConstructor;
+import com.spring.sorigalpi.entity.Member;
+import com.spring.sorigalpi.entity.Role;
+import com.spring.sorigalpi.entity.Status;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,12 +26,14 @@ public class SignUpDto { //회원 가입 화면으로부터 넘어오는 가입�
 	private String profileImg;
 	private LocalDateTime creDate;
 	private String intro;
-	private String status;
-	private String role;
+	
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	private Status status;
 	
 	@Builder
 	public SignUpDto(String memberId, String email, String pwd, String nickName, String profileImg,
-			LocalDateTime creDate,  String intro,  String status,  String role) {
+			LocalDateTime creDate,  String intro, Role role, Status status) {
 		
 			this.memberId = memberId;
 			this.email = email;
@@ -36,22 +42,23 @@ public class SignUpDto { //회원 가입 화면으로부터 넘어오는 가입�
 			this.profileImg = profileImg;
 			this.creDate = creDate;
 			this.intro = intro;
-			this.status = status;
 			this.role = role;
+			this.status = status;
+		
 }
 	
-	//Entity 클래스인 Member에 객체를 주입하여 Entity 클래스를 반환하는 메소드
-	public Member toEntity() {
-		return Member.builder()
-			.memberId(memberId)
-		.email(email)
-		.pwd(pwd)
-		.nickName(nickName)
-		.profileImg(profileImg)
-		.creDate(creDate)
-		.intro(intro)
-		.status(status)
-		.role(role)
-		.build();
-	}
+   //toEntity()메서드를 통해 Service > Database(Entity)로 Data를 전달할 때 Dto를 통해서 전달
+   public Member toEntity() {
+	   Member member = Member.builder()
+			   .memberId(memberId)
+			   .email(email)
+			   .pwd(pwd)
+			   .nickName(nickName)
+			   .profileImg(profileImg)
+			   .creDate(creDate)
+			   .role(role)
+			   .status(status)
+			   .build();
+	   return member;
+   }
 }
