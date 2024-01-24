@@ -17,9 +17,10 @@ import com.spring.sorigalpi.dto.SignUpDto;
 import com.spring.sorigalpi.entity.Member;
 import com.spring.sorigalpi.service.MemberService;
 
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
-
-@RestController
+@Api(tags="member")
+@RestController("memberController")
 @RequestMapping(value = "/member")
 @RequiredArgsConstructor
 public class MemberController {
