@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spring.sorigalpi.dto.LoginDto;
 import com.spring.sorigalpi.dto.MemberUpdateDto;
 import com.spring.sorigalpi.dto.SignUpDto;
+import com.spring.sorigalpi.entity.BaseEntity;
 import com.spring.sorigalpi.entity.Member;
 import com.spring.sorigalpi.repository.MemberRepository;
 
@@ -17,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService {
+public class MemberService extends BaseEntity {
 
    @Autowired
 	private final BCryptPasswordEncoder passwordEncoder;
@@ -54,7 +55,8 @@ public class MemberService {
     
     @Transactional
     public String save(SignUpDto signUpDto) { //사용자 추가 메소드
-    	return memberRepository.save(signUpDto.toEntity()).getMemberId();
+    	signUpDto.setMemberId(createRandomUuId());;
+    	return memberRepository.save(signUpDto.toEntity()).getNickName() + "님 환영합니다.";
     }
     
     public List<Member> findAll(){

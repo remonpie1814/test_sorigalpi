@@ -15,7 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.spring.sorigalpi.enumtype.MemberEnum.Role;
+import com.spring.sorigalpi.enumtype.MemberEnum.Status;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,7 +32,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @Column( name = "memberId" )
@@ -47,10 +51,6 @@ public class Member {
     @Column( name = "intro" )
     private String intro;
 
-    @Column( name = "creDate" )
-    //@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime creDate;
-
 
     @Column( name = "role" )
     private String role;
@@ -62,13 +62,6 @@ public class Member {
     private Status status; */
 
 
-
-    /* public List<String> getRolesList(){
-        if(this.role.length() > 0){
-            return Arrays.asList(this.role.split(","));
-    }
-            return new ArrayList<>();
-}*/
 
     public void update (String email, String pwd, String nickName, String profileImg,
             String intro, String status, String role) {

@@ -15,10 +15,8 @@ spring:
     #url: jdbc:mysql://localhost:3306/test2?serverTimezone=Asia/Seoul
     username: root
     password: 1234
-    #password: 0930
-    
-    
-  # 스웨거 스프링부트 버전2.6이후 생기는 오류를 해결해주는 설정    
+   
+   # 스웨거 스프링부트 버전2.6이후 생기는 오류를 해결해주는 설정    
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
