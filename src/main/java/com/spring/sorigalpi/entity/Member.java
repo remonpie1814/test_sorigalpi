@@ -32,7 +32,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Member extends BaseTime {
+public class Member extends BaseEntity {
 
     @Id
     @Column( name = "memberId" )
