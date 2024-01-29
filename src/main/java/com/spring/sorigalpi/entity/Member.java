@@ -53,23 +53,26 @@ public class Member extends BaseEntity {
 
 
     @Column( name = "role" )
-    @Enumerated(EnumType.STRING)
-    private Role role;
-    
+    private String role;
     @Column( name = "status" )
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    private String status;
+
+    /* @Enumerated(EnumType.STRING)
+    private Role role;
+    private Status status; */
+
+
 
     public void update (String email, String pwd, String nickName, String profileImg,
-            String intro, Role role, Status status) {
+            String intro, String status, String role) {
 
         this.email = email;
         this.pwd = pwd;
         this.nickName = nickName;
         this.profileImg = profileImg;
         this.intro = intro;
-        this.role = role;
         this.status = status;
+        this.role = role;
     }
 
 
