@@ -53,12 +53,26 @@ public class BookController {
 		return new ResponseEntity<>(basicResponse, HttpStatus.OK);
 	}
 	
-	
+	@ApiOperation(
+			value = "동화책 테이블 정보 생성",
+			notes = "화책 테이블 정보 생성 API") 
+	@ApiResponse(code = 200, message = "성공")
 	@PostMapping("/createBook")
-	public void createBook(@RequestBody BookDTO bookDTO){
+	public ResponseEntity<BasicResponse> createBook(@RequestBody BookDTO bookDTO){
+		String bookId = bookService.createBook(bookDTO);
 		
-	
+		BasicResponse basicResponse =  BasicResponse.builder()
+					.code(HttpStatus.OK.value())
+					.httpStatus(HttpStatus.OK)
+					.message("책 생성 성공")
+					.resultStr(bookId)
+					.build();
+
+		return new ResponseEntity<>(basicResponse, HttpStatus.OK);
 	}
+	
+	
+	
 	
 	@Data
 	@Builder
@@ -72,6 +86,7 @@ public class BookController {
 		private String message;
 		private Integer count;
 		private List<Object> result;
+		private String resultStr;
 		
 	}
 }
