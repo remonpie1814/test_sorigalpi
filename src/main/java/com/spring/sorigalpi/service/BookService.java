@@ -1,8 +1,8 @@
 package com.spring.sorigalpi.service;
 
 import java.util.List;
+import java.util.UUID;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +13,8 @@ import com.spring.sorigalpi.repository.BookRepository;
 
 @Service("bookService")
 public class BookService {
+	//@Autowired
+	//private BookDTO bookDTO;
 	@Autowired
 	private BookRepository bookRepository;
 
@@ -20,19 +22,21 @@ public class BookService {
 		return bookRepository.findAll();
 	}
 	
-	public void createBook(BookDTO bookDTO) {
-		bookRepository.save(bookDTO.toEntity());
+	public String createBook(BookDTO bookDTO) {
+		bookDTO.setBookId(createRandomUuId());
+		
+		System.out.println(bookDTO.getBookId());
+		
+		return bookRepository.save(bookDTO.toEntity()).getBookId();
 	}
 	
-	
-	public void createRandomStrusingUtilsRand() {
+
+	public String createRandomUuId() {	//UUID 생성
 		
-		String randomStr = RandomStringUtils.randomAlphanumeric(20);
-		BookDTO book = new BookDTO();
-		book.setBookId(RandomStringUtils.randomAlphanumeric(20));
+		String resultUuid = UUID.randomUUID().toString();
 		
-		System.out.println("랜덤 문자열 : "+book.getBookId());
+		System.out.println("uuid : "+resultUuid);
 		
-		
+		return resultUuid;
 	}
 }
