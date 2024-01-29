@@ -7,8 +7,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import com.spring.sorigalpi.entity.Member;
-import com.spring.sorigalpi.entity.Role;
-import com.spring.sorigalpi.entity.Status;
+import com.spring.sorigalpi.enumtype.MemberEnum.Role;
+import com.spring.sorigalpi.enumtype.MemberEnum.Status;
 
 import lombok.Builder;
 import lombok.Data;

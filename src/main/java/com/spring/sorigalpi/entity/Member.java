@@ -17,6 +17,9 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.spring.sorigalpi.enumtype.MemberEnum.Role;
+import com.spring.sorigalpi.enumtype.MemberEnum.Status;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
