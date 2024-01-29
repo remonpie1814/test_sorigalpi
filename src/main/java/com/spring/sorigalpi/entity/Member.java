@@ -64,13 +64,6 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    /* public List<String> getRolesList(){
-        if(this.role.length() > 0){
-            return Arrays.asList(this.role.split(","));
-    }
-            return new ArrayList<>();
-}*/
-
     public void update (String email, String pwd, String nickName, String profileImg,
             String intro, Role role, Status status) {
 

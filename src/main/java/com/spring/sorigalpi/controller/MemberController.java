@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.sorigalpi.dto.MemberUpdateDto;
 import com.spring.sorigalpi.dto.SignUpDto;
 import com.spring.sorigalpi.entity.Member;
+import com.spring.sorigalpi.enumtype.MemberEnum.Role;
+import com.spring.sorigalpi.enumtype.MemberEnum.Status;
 import com.spring.sorigalpi.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -52,6 +54,8 @@ public class MemberController {
 		
 	@PostMapping("/signUp")
 	public String save(@RequestBody SignUpDto signUpDto) {
+		signUpDto.setRole(Role.USER);
+		signUpDto.setStatus(Status.ACTIVE);
 		return memberService.save(signUpDto);
 	}
 	

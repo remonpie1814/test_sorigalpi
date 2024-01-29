@@ -54,7 +54,7 @@ public class MemberService {
     
     @Transactional
     public String save(SignUpDto signUpDto) { //사용자 추가 메소드
-    	return memberRepository.save(signUpDto.toEntity()).getMemberId();
+    	return memberRepository.save(signUpDto.toEntity()).getMemberId() + "님 환영합니다.";
     }
     
     public List<Member> findAll(){
