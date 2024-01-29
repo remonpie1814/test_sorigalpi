@@ -41,19 +41,19 @@ public class Book {
 	private int pageNum;
 	
 	@ApiModelProperty(value = "공개여부", example = "PUBLIC, PRIVATE, TEMP", required = true)
-	@Enumerated(EnumType.STRING)
-	private Status status;
+	//@Enumerated(EnumType.STRING)
+	private String status;
 	
 	@ApiModelProperty(value = "만든날짜", example = "2024-01-01", required = true)
 	private Date creDate;
 	
 	@ApiModelProperty(value = "동화책 신고상태", example = "YES, NO", required = true)
-	@Enumerated(EnumType.STRING)
-	private Blind blind;
+	//@Enumerated(EnumType.STRING)
+	private String blind;
 	
 	@ApiModelProperty(value = "녹음허용여부", example = "YES, NO", required = true)
-	@Enumerated(EnumType.STRING)
-	private Recordable recordable;
+	//@Enumerated(EnumType.STRING)
+	private String recordable;
 	
 	@ApiModelProperty(value = "동화책설명", example = "동화책내용 들어감", required = true)
 	private String info;

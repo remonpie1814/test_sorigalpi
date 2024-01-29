@@ -56,9 +56,15 @@ public class BookController {
 	
 	@PostMapping("/createBook")
 	public void createBook(@RequestBody BookDTO bookDTO){
-		
+		bookService.createBook(bookDTO);
 	
 	}
+	
+	@GetMapping("/getRandom")
+	public void test() {
+		bookService.createRandomStrusingUtilsRand();
+	}
+	
 	
 	@Data
 	@Builder

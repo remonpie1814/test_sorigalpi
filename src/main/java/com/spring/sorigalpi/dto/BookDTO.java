@@ -5,6 +5,7 @@ import java.sql.Date;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+import com.spring.sorigalpi.entity.Book;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -31,37 +32,37 @@ public class BookDTO {
 	private int pageNum;
 	
 	@ApiModelProperty(value = "공개여부", example = "PUBLIC, PRIVATE, TEMP", required = true)
-	@Enumerated(EnumType.STRING)
-	private Status status;
+	//@Enumerated(EnumType.STRING)
+	private String status;
 	
 	@ApiModelProperty(value = "만든날짜", example = "2024-01-01", required = true)
 	private Date creDate;
 	
 	@ApiModelProperty(value = "동화책 신고상태", example = "YES, NO", required = true)
-	@Enumerated(EnumType.STRING)
-	private Blind blind;
+	//@Enumerated(EnumType.STRING)
+	private String blind;
 	
 	@ApiModelProperty(value = "녹음허용여부", example = "YES, NO", required = true)
-	@Enumerated(EnumType.STRING)
-	private Recordable recordable;
+	//@Enumerated(EnumType.STRING)
+	private String recordable;
 	
 	@ApiModelProperty(value = "동화책설명", example = "동화책내용 들어감", required = true)
 	private String info;
-	/*
+
 	public Book toEntity() {
 		return Book.builder()
 				.bookId(bookId)
 				.memberId(memberId)
 				.bookName(bookName)
 				.pageNum(pageNum)
-				.status(null)
+				.status(status)
 				.creDate(creDate)
 				.blind(blind)
 				.recordable(recordable)
 				.info(info)
-				.bulid();
+				.build();
 	}
-	*/
+	/*
 	private enum Status {
 		PUBLIC, PRIVATE, TEMP
 	}
@@ -73,4 +74,5 @@ public class BookDTO {
 	private enum Recordable{
 		YES, NO
 	}
+	*/
 }

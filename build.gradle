@@ -39,6 +39,10 @@ dependencies {
     //Swagger
    	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	
+	// Apache Commons Lang » 3.12.0 RandomStringUtils 
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	
 }
 
 tasks.named('bootBuildImage') {
