@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.spring.sorigalpi.enumtype.MemberEnum.Role;
@@ -31,7 +32,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Member {
+public class Member extends BaseTime {
 
     @Id
     @Column( name = "memberId" )
@@ -50,12 +51,7 @@ public class Member {
     @Column( name = "intro" )
     private String intro;
 
-    @Column( name = "creDate" )
-    //@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime creDate;
 
-
-   
     @Column( name = "role" )
     @Enumerated(EnumType.STRING)
     private Role role;
