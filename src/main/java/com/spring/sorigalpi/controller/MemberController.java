@@ -55,8 +55,7 @@ public class MemberController {
 		
 	@PostMapping("/signUp")
 	public String save(@RequestBody SignUpDto signUpDto) {
-		signUpDto.setRole(Role.USER);
-		signUpDto.setStatus(Status.ACTIVE);
+		
 		return memberService.save(signUpDto);
 	}
 	
