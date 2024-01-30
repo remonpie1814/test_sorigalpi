@@ -30,22 +30,22 @@ public class MemberController {
     private final MemberService memberService;
   
 	@PostMapping("/signUp")
-	public String save(@RequestBody MemberDto memberDto) {
+	public String createMember(@RequestBody MemberDto memberDto) {
 		
 		return memberService.createMember(memberDto);
 	}
 	
-	@GetMapping("/listMember")
-	public List<Member> findAll(){
+	@GetMapping("/listMembers")
+	public List<Member> listeMembers(){
 		return (List<Member>) memberService.listMembers();
 	}
 	
 	@PutMapping("/updateMember/{memberId}")
-		public String update(@PathVariable String memberId, @RequestBody MemberDto memberDto) {
+		public String updateMember(@PathVariable String memberId, @RequestBody MemberDto memberDto) {
 			return memberService.updateMember(memberId, memberDto);
 		}
 	@DeleteMapping("/deleteMember/{memberId}")
-	public void delete(@PathVariable String memberId) {
+	public void deleteMember(@PathVariable String memberId) {
 		memberService.deleteMember(memberId);
 	}
 }
