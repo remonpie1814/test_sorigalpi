@@ -1,13 +1,7 @@
 package com.spring.sorigalpi.dto;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-
 import com.spring.sorigalpi.entity.Member;
-import com.spring.sorigalpi.enumtype.MemberEnum.Role;
-import com.spring.sorigalpi.enumtype.MemberEnum.Status;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
