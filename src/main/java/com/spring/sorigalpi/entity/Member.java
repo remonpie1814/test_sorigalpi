@@ -2,10 +2,14 @@ package com.spring.sorigalpi.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.spring.sorigalpi.base.Base;
+import com.spring.sorigalpi.enumtype.MemberEnum.Role;
+import com.spring.sorigalpi.enumtype.MemberEnum.Status;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,13 +46,15 @@ public class Member extends Base {
 
 
     @Column( name = "role" )
-    private String role;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
     @Column( name = "status" )
-    private String status;
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
 
 
     public void updateMember (String email, String pwd, String nickName, String profileImg,
-            String intro, String status, String role) { /*사용자 정보 수정 메소드 - JPA에서 영속성 컨텍스트 유지하기를 제공하는데 이 상태에서 해당 데이터 값을 변경하면 자동으로 변경사항이 DB에 저장된다.
+            String intro) { /*사용자 정보 수정 메소드 - JPA에서 영속성 컨텍스트 유지하기를 제공하는데 이 상태에서 해당 데이터 값을 변경하면 자동으로 변경사항이 DB에 저장된다.
     	                                                즉 데이터만 변경하면 알아서 변경되므로 수정 메소드를 만들어서 구현함*/
 
         this.email = email;
@@ -56,8 +62,6 @@ public class Member extends Base {
         this.nickName = nickName;
         this.profileImg = profileImg;
         this.intro = intro;
-        this.status = status;
-        this.role = role;
     }
 
 

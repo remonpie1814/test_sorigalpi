@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spring.sorigalpi.base.Base;
 import com.spring.sorigalpi.dto.MemberDto;
 import com.spring.sorigalpi.entity.Member;
+import com.spring.sorigalpi.enumtype.MemberEnum.Role;
+import com.spring.sorigalpi.enumtype.MemberEnum.Status;
 import com.spring.sorigalpi.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,8 @@ public class MemberService extends Base {
     
     @Transactional
     public String createMember(MemberDto memberDto) { // 사용자 추가 메소드
+    	memberDto.setRole(Role.ROLE_USER);
+    	memberDto.setStatus(Status.ACTIVE);
     	memberDto.setMemberId(createRandomUuId());;
     	return memberRepository.save(memberDto.toEntity()).getNickName() + "님 환영합니다.";
     }
@@ -38,7 +42,7 @@ public class MemberService extends Base {
     			() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
     	//값 변경
     	member.updateMember(memberDto.getEmail(), memberDto.getPwd(), memberDto.getNickName(),
-    			memberDto.getProfileImg(), memberDto.getStatus(),memberDto.getIntro(), memberDto.getRole());
+    			memberDto.getProfileImg(), memberDto.getIntro());
     	return memberDto.getNickName() + "님 정보가 변경되었습니다.";
     	//트랜잭션이 끝나면서 변경된 값을 테이블에 적용
     	//update기능에서 JPA영속성 때문에 DB에 쿼리를 없애는 부분이 없으며, Entity의 값만 변경하면 별도로 update쿼리가 필요없다.
