@@ -57,6 +57,12 @@ public class Member extends BaseEntity {
     @Column( name = "status" )
     private String status;
 
+    /* @Enumerated(EnumType.STRING)
+    private Role role;
+    private Status status; */
+
+
+
     public void update (String email, String pwd, String nickName, String profileImg,
             String intro, String status, String role) {
 
