@@ -63,10 +63,10 @@ public class MemberService extends Base {
 
         // 비밀번호 일치 여부 확인
         if(passwordEncoder.matches(rawPassword, byEmail.getPwd())){
-            return "로그인 성공";
+            return "로그인했습니다.";
         }
 
-        return "로그인 실패";
+        return "로그인에 실패하였습니다.";
     }
     	} 
 

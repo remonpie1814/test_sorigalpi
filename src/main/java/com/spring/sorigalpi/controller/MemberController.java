@@ -33,6 +33,11 @@ public class MemberController {
 		return memberService.createMember(memberDto);
 	}
 	
+	@GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+	
 	@GetMapping("/listMembers")
 	public List<Member> listeMembers(){
 		return (List<Member>) memberService.listMembers();
@@ -47,7 +52,3 @@ public class MemberController {
 		return memberService.deleteMember(memberId);
 	}
 }
-	
-	
-
-
