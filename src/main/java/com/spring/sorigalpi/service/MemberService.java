@@ -46,14 +46,13 @@ public class MemberService extends Base {
     
     @Transactional
     public String deleteMember (String memberId) { // 사용자 삭제 메소드
-    	Member member = memberRepository.findById(memberId).orElseThrow(() -> {
+    	memberRepository.findById(memberId).orElseThrow(() -> {
     		return new IllegalArgumentException("해당 사용자가 존재하지 않습니다.");
     	});
     	
     	memberRepository.deleteById(memberId);
     	return "탈퇴가 완료되었습니다.";
     }
-    
     
     
     public String login(MemberDto memberDto) { // 로그인 메소드
