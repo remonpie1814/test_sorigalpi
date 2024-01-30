@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.sorigalpi.dto.MemberDto;
 import com.spring.sorigalpi.entity.Member;
-import com.spring.sorigalpi.enumtype.MemberEnum.Role;
-import com.spring.sorigalpi.enumtype.MemberEnum.Status;
 import com.spring.sorigalpi.service.MemberService;
 
 import io.swagger.annotations.Api;
@@ -30,23 +28,23 @@ public class MemberController {
     private final MemberService memberService;
   
 	@PostMapping("/signUp")
-	public String save(@RequestBody MemberDto memberDto) {
+	public String createMember(@RequestBody MemberDto memberDto) {
 		
 		return memberService.createMember(memberDto);
 	}
 	
-	@GetMapping("/listMember")
-	public List<Member> findAll(){
+	@GetMapping("/listMembers")
+	public List<Member> listeMembers(){
 		return (List<Member>) memberService.listMembers();
 	}
 	
 	@PutMapping("/updateMember/{memberId}")
-		public String update(@PathVariable String memberId, @RequestBody MemberDto memberDto) {
+		public String updatMember(@PathVariable String memberId, @RequestBody MemberDto memberDto) {
 			return memberService.updateMember(memberId, memberDto);
 		}
 	@DeleteMapping("/deleteMember/{memberId}")
-	public void delete(@PathVariable String memberId) {
-		memberService.deleteMember(memberId);
+	public String deleteMember(@PathVariable String memberId) {
+		return memberService.deleteMember(memberId);
 	}
 }
 	
