@@ -41,12 +41,12 @@ public class MemberController {
 	}
 	
 	@PutMapping("/updateMember/{memberId}")
-		public String updateMember(@PathVariable String memberId, @RequestBody MemberDto memberDto) {
+		public String updatMember(@PathVariable String memberId, @RequestBody MemberDto memberDto) {
 			return memberService.updateMember(memberId, memberDto);
 		}
 	@DeleteMapping("/deleteMember/{memberId}")
-	public void deleteMember(@PathVariable String memberId) {
-		memberService.deleteMember(memberId);
+	public String deleteMember(@PathVariable String memberId) {
+		return memberService.deleteMember(memberId);
 	}
 }
 	

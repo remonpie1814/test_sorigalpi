@@ -37,7 +37,7 @@ public class MemberService extends Base {
     	Member member = memberRepository.findById(memberId).orElseThrow(
     			() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
     	//값 변경
-    	member.updateMember(memberDto.getEmail(), memberDto.getPwd(), memberDto.getNickName(),
+    	member.member(memberDto.getEmail(), memberDto.getPwd(), memberDto.getNickName(),
     			memberDto.getProfileImg(), memberDto.getStatus(),memberDto.getIntro(), memberDto.getRole());
     	return memberDto.getNickName() + "님 정보가 변경되었습니다.";
     	//트랜잭션이 끝나면서 변경된 값을 테이블에 적용
@@ -51,8 +51,10 @@ public class MemberService extends Base {
     	});
     	
     	memberRepository.deleteById(memberId);
-    	return "삭제 완료";
+    	return "탈퇴가 완료되었습니다.";
     }
+    
+    
     
     public String login(MemberDto memberDto) { // 로그인 메소
         String email = memberDto.getEmail();
