@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -25,20 +24,23 @@ public class SecurityConfig {
 
     // 시큐리티 필터 설정
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+            .authorizeRequests() // 요청에 대한 권한 설정
+            .antMatchers("/").authenticated()
+            .anyRequest().permitAll();
 
-        http
-                .cors().disable()
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .formLogin().disable()
-                .httpBasic().disable() // http의 기본 인증. ID, PW 인증방식
-                .authorizeHttpRequests()
-                .anyRequest().permitAll();
+        httpSecurity
+            .formLogin() // Form Login 설정
+                .loginPage("/member/login")
+                .loginProcessingUrl("/api/login")
+                .defaultSuccessUrl("/")
+            .and()
+                .logout()
+            .and()
+                .csrf().disable();
 
-
-        return http.build();
+        return httpSecurity.build();
 
     }
 }
