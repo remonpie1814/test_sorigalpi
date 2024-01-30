@@ -7,10 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.sorigalpi.base.Base;
 import com.spring.sorigalpi.dto.LoginDto;
 import com.spring.sorigalpi.dto.MemberUpdateDto;
 import com.spring.sorigalpi.dto.SignUpDto;
-import com.spring.sorigalpi.entity.BaseEntity;
 import com.spring.sorigalpi.entity.Member;
 import com.spring.sorigalpi.repository.MemberRepository;
 
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService extends BaseEntity {
+public class MemberService extends Base {
 
    @Autowired
 	private final BCryptPasswordEncoder passwordEncoder;
