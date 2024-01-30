@@ -46,7 +46,7 @@ public class Member extends Base {
     private String status;
 
 
-    public void updateMember (String email, String pwd, String nickName, String profileImg,
+    public void member (String email, String pwd, String nickName, String profileImg,
             String intro, String status, String role) {
 
         this.email = email;
