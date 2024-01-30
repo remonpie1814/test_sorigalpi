@@ -32,7 +32,7 @@ public class MemberService extends Base {
     	return memberRepository.findAll();
     }
     @Transactional
-    public String updateMember(String memberId, MemberDto memberDto) { // 사용자 정보 변경 메소
+    public String updateMember(String memberId, MemberDto memberDto) { // 사용자 정보 변경 메소드
     	//findById 메소드를 통해 값을 가져오면서 해당 값은 영속성을 가진다.
     	Member member = memberRepository.findById(memberId).orElseThrow(
     			() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
@@ -56,7 +56,7 @@ public class MemberService extends Base {
     
     
     
-    public String login(MemberDto memberDto) { // 로그인 메소
+    public String login(MemberDto memberDto) { // 로그인 메소드
         String email = memberDto.getEmail();
         String rawPassword = memberDto.getPwd();
 
