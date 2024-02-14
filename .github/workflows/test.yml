@@ -93,11 +93,15 @@ jobs:
       - name: Clone repo and copy file
         run: |
           git clone https://github.com/remonpie1814/test_swagger.git
+
+      - name: Copy swagger.json
+        run: |
           cp swagger.json test_swagger/
           cd test_swagger
+          git remote set-url swagger https://github.com/remonpie1814/test_swagger.git
 
       - name: Commit and Push
         run: |
           git add swagger.json
           git commit -m "Update Swagger"
-          git push -f origin main
+          git push -f swagger main
