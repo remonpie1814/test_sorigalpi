@@ -97,11 +97,13 @@ jobs:
       - name: Copy swagger.json
         run: |
           cp swagger.json test_swagger/
-          cd test_swagger
-          git remote set-url swagger https://github.com/remonpie1814/test_swagger.git
 
       - name: Commit and Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
+          cd test_swagger
+          git remote add swagger https://github.com/remonpie1814/test_swagger.git
           git add swagger.json
           git commit -m "Update Swagger"
           git push -f swagger main
