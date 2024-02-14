@@ -16,7 +16,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: 1234
           MYSQL_DATABASE: sorigalpi
         ports:
-          -  3306:3306
+          - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
@@ -26,8 +26,8 @@ jobs:
       - name: Set up JDK  11
         uses: actions/setup-java@v2
         with:
-          java-version: '11'
-          distribution: 'adopt'
+          java-version: "11"
+          distribution: "adopt"
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -54,7 +54,7 @@ jobs:
           max_retries=5 # Maximum number of retries
           retry_delay=5 # Delay between retries in seconds
           success=false
-          
+
           for (( i=0; i<$max_retries; i++ )); do
           current_time=$(date +%s)
           elapsed_time=$((current_time - start_time))
@@ -75,12 +75,12 @@ jobs:
           echo "Download failed. Retrying in $retry_delay seconds..."
           sleep $retry_delay
           done
-          
+
           if [ "$success" = false ]; then
           echo "Failed to download after $max_retries attempts and $timeout_seconds seconds."
           exit  1
           fi
-          
+
           echo "File downloaded successfully."
 
       - name: Configure Git User
@@ -101,7 +101,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SECRET_COMMIT }}
         run: |
           cd test_swagger
-          git remote add swagger https://${GITHUB_TOKEN}@github.com/remonpie1814/test_swagger.git
+          git remote add ui-repo https://${GITHUB_TOKEN}@github.com/remonpie1814/test_swagger.git
           git add swagger.json
           git commit -m "Update Swagger"
-          git push -f swagger main
+          git push -f ui-repo main
