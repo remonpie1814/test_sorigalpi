@@ -95,4 +95,4 @@ jobs:
           git checkout -b swagger-json-branch
           git add swagger.json
           git commit -m "Update Swagger JSON"
-          git push origin swagger-json-branch
+          git push -f origin swagger-json-branch
