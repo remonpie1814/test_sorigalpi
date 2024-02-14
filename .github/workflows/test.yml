@@ -49,9 +49,41 @@ jobs:
               exit  1
             fi
           done
+      - name: Download file with retry
+        run: |
+          start_time=$(date +%s)
+          timeout_seconds=600 # Set your desired timeout here, e.g.,  600 seconds for  10 minutes
+          max_retries=5 # Maximum number of retries
+          retry_delay=5 # Delay between retries in seconds
+          success=false
+          
+          for (( i=0; i<$max_retries; i++ )); do
+          current_time=$(date +%s)
+          elapsed_time=$((current_time - start_time))
+          if [ $elapsed_time -ge $timeout_seconds ]; then
+           echo "Timeout reached. Exiting."
+           exit  1
+          fi
 
-      - name: Generate Swagger JSON
-        run: curl http://localhost:8080/v3/api-docs > swagger.json
+          response=$(curl -s -o swagger.json -w "%{http_code}" http://localhost:8080/v3/api-docs)
+          size=$(du -b swagger.json | cut -f1)
+          http_status=$?
+
+          if [[ "$size" -gt  0 ]] && [[ "$http_status" != "404" ]]; then
+           success=true
+           break
+          fi
+
+          echo "Download failed. Retrying in $retry_delay seconds..."
+          sleep $retry_delay
+          done
+          
+          if [ "$success" = false ]; then
+          echo "Failed to download after $max_retries attempts and $timeout_seconds seconds."
+          exit  1
+          fi
+          
+          echo "File downloaded successfully."
 
       - name: Configure Git User
         run: |
