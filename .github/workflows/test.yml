@@ -41,8 +41,6 @@ jobs:
 
       - name: Generate Swagger JSON
         run: curl http://localhost:8080/v3/api-docs > swagger.json
-        # Ensure that the server is still running when we attempt to access the Swagger JSON
-        needs: build
 
       - name: Upload Swagger JSON
         uses: actions/upload-artifact@v2
