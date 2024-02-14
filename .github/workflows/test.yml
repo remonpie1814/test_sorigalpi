@@ -99,8 +99,6 @@ jobs:
           cp swagger.json test_swagger/
 
       - name: Commit and Push
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
           cd test_swagger
           git remote add swagger https://github.com/remonpie1814/test_swagger.git
