@@ -49,7 +49,7 @@ jobs:
               exit  1
             fi
           done
-      - name: Download file with retry
+      - name: Download file with retry for swagger.json
         run: |
           start_time=$(date +%s)
           timeout_seconds=600 # Set your desired timeout here, e.g.,  600 seconds for  10 minutes
@@ -90,9 +90,14 @@ jobs:
           git config --global user.email "yeji1814@gmail.com"
           git config --global user.name "remonpie1814"
 
+      - name: Clone repo and copy file
+        run: |
+          git clone https://github.com/remonpie1814/test_swagger.git
+          cp swagger.json test_swagger/
+          cd test_swagger
+
       - name: Commit and Push
         run: |
-          git checkout -b swagger-json-branch
           git add swagger.json
-          git commit -m "Update Swagger JSON"
-          git push -f origin swagger-json-branch
+          git commit -m "Update Swagger"
+          git push -f origin main
