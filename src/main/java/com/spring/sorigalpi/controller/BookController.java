@@ -57,7 +57,7 @@ public class BookController {
 			value = "동화책 테이블 정보 생성",
 			notes = "화책 테이블 정보 생성 API") 
 	@ApiResponse(code = 200, message = "성공")
-	@PostMapping("/createBook")
+	@PostMapping("/createBook") //동화책 생성
 	public ResponseEntity<BasicResponse> createBook(@RequestBody BookDTO bookDTO){
 		String bookId = bookService.createBook(bookDTO);
 		
@@ -72,6 +72,23 @@ public class BookController {
 	}
 	
 	
+	@ApiOperation(
+			value = "동화책 테이블 정보 삭제 API",
+			notes = "동화책 id로 하나 삭제") 
+	@ApiResponse(code = 200, message = "성공")
+	@PostMapping("/deleteBookById") //동화책 Id로 삭제
+	public ResponseEntity<BasicResponse> deleteBook(@RequestBody BookDTO bookDTO){
+		String result = bookService.deleteBookById(bookDTO);
+		
+			BasicResponse basicResponse =  BasicResponse.builder()
+					.code(HttpStatus.OK.value())
+					.httpStatus(HttpStatus.OK)
+					.message(result)
+					.build();
+		
+		
+		return new ResponseEntity<>(basicResponse, HttpStatus.OK);
+	}
 	
 	
 	@Data
