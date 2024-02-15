@@ -62,7 +62,7 @@ jobs:
            echo "Timeout reached. Exiting."
            exit  1
           fi
-
+               
           response=$(curl -s -o swagger.json -w "%{http_code}" http://localhost:8080/v3/api-docs)
           size=$(du -b swagger.json | cut -f1)
           http_status=$?
