@@ -50,11 +50,3 @@ tasks.named('bootBuildImage') {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
-tasks.register('generateSwaggerJson', Exec) {
-	dependsOn bootRun
-	group = 'Documentation'
-	description = 'Generates Swagger JSON'
-	executable 'curl'
-	args '-o', "${buildDir}/swagger.json", 'http://localhost:8080/v3/api-docs'
-}

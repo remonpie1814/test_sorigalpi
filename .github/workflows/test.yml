@@ -96,7 +96,13 @@ jobs:
         run: |
           cp swagger.json test_swagger/
 
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet HEAD^ HEAD || echo "::set-output name=changes::true"
+
       - name: Commit and Push
+        if: steps.changes.outputs.changes == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.SECRET_COMMIT }}
         run: |
