@@ -99,10 +99,9 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          cd test_swagger
-          git diff --quiet HEAD^ HEAD swagger.json || echo "::set-output name=changed::true"
-          echo "changed=${{ steps.check-swagger-changes.outputs.changed }}" >> $GITHUB_STATE
-
+          if diff -q file1.txt file2.txt; then
+            echo "changed=true" >> $GITHUB_STATE
+          fi
 
       - name: Commit and push
         if: env.STATE_changed == 'true'
