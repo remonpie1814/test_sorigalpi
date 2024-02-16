@@ -102,12 +102,16 @@ jobs:
           cd test_swagger
           git diff --quiet HEAD^ HEAD || echo "::set-output name=changes::true"
 
-      - name: Commit and Push
+
+      - name: Commit and push
         if: steps.changes.outputs.changes == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.SECRET_COMMIT }}
         run: |
+          cd test_swagger
           git remote add ui-repo https://${GITHUB_TOKEN}@github.com/remonpie1814/test_swagger.git
           git add swagger.json
           git commit -m "Update Swagger"
           git push -f ui-repo main
+
+          
