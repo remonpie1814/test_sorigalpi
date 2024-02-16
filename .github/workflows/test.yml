@@ -96,7 +96,7 @@ jobs:
         id: changes
         run: |
           if ! diff -q swagger.json test_swagger/swagger.json; then
-            echo "changed=true" >> $GITHUB_STATE
+            echo "STATE_changed=true" >> $GITHUB_ENV
           fi
 
       - name: Copy swagger.json
