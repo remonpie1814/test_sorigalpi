@@ -95,7 +95,7 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if diff -q swagger.json test_swagger/swagger.json; then
+          if ! diff -q swagger.json test_swagger/swagger.json; then
             echo "changed=true" >> $GITHUB_STATE
           fi
 
