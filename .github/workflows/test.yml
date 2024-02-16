@@ -92,16 +92,16 @@ jobs:
         run: |
           git clone https://github.com/remonpie1814/test_swagger.git
 
-      - name: Copy swagger.json
-        run: |
-          cp swagger.json test_swagger/
-
       - name: Check for changes
         id: changes
         run: |
-          if diff -q file1.txt file2.txt; then
+          if diff -q swagger.json test_swagger/swagger.json; then
             echo "changed=true" >> $GITHUB_STATE
           fi
+
+      - name: Copy swagger.json
+        run: |
+          cp swagger.json test_swagger/
 
       - name: Commit and push
         if: env.STATE_changed == 'true'
