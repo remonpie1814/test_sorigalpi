@@ -100,11 +100,12 @@ jobs:
         id: changes
         run: |
           cd test_swagger
-          git diff --quiet HEAD^ HEAD || echo "::set-output name=changes::true"
+          git diff --quiet HEAD^ HEAD swagger.json || echo "::set-output name=changed::true"
+          echo "changed=${{ steps.check-swagger-changes.outputs.changed }}" >> $GITHUB_STATE
 
 
       - name: Commit and push
-        if: steps.changes.outputs.changes == 'true'
+        if: env.STATE_changed == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.SECRET_COMMIT }}
         run: |
