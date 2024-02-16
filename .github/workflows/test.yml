@@ -103,7 +103,7 @@ jobs:
         run: |
           cp swagger.json test_swagger/
 
-      - name: Commit and push
+      - name: Commit and push!
         if: env.STATE_changed == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.SECRET_COMMIT }}
